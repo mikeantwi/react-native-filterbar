@@ -1,0 +1,11 @@
+{
+  "name": "react-native-filterbar",
+  "version": "1.0.0",
+  "description": "A React Native filter bar component for Android.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mikeantwi",
+  "license": "ISC"
+}
