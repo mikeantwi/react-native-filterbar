@@ -1,29 +1,48 @@
 # react-native-filterbar
 
-Install
+
+react-native-filterbar is  a cross-platform filter bar which is easy to integrate into a project
+
+
+## Install
+```bash
 npm i react-native-filterbar --save
+```
 
 
-Usage
-
+##### Usage
+```jsx
 import { Filterbar } from 'react-native-filterbar';
-import data from './data';
+
+export const courses = [
+  {
+    key: 'Computer Engineering',
+    label: 'Computer Engineering',
+   
+  },
+  {
+    key: 'Biomedical Engineering',
+    label: 'Biomedical Engineering',
+   
+  }
+];
 
 export default class ExampleApp extends Component {
     constructor(props) {
         this.state = {
-            itemSelected,
+            selected,
             visible
         }
-    };
+    }
 
 
     render() {
         <View style={{flex: 1, backgroundColor: '#ede', justifyContent: 'space-around}}> 
-            {this.renderFilterbar(data)}
-
+           
+           {this.renderFilterbar(data)}
+           
             <TouchableOpacity 
-                onPress={this.onShow} 
+                onPress={this.onVisble} 
                 style={filterBarStyle.touchable}>
                 <Text style={{ textAlign: 'center', color: this.state.visible ? '#333' : '#c9c9c9'}}>{this.state.picked}</Text>
             </TouchableOpacity> 
@@ -33,22 +52,22 @@ export default class ExampleApp extends Component {
     renderFilterbar() {
         return (
             <Filterbar
-                visible={this.state.typeVisible}
-                onSelect={this.typeSelected}
-                onCancel={this.typeCancelled}
-                options={oneType}
+                visible={this.state.visible}
+                onSelectItems={this.onSelectItems}
+                onCancel={this.onCancel}
+                options={courses}
             > 
         );
     }
 
      onVisible = () => {
-            this.setState({ visible: true });
+        this.setState({ visible: true });
      }
 
 
-      onSelect = (selected) => {
+      onSelectItems = (selected) => {
         this.setState({
-          itemSelected: selected,
+          selected: selected,
           visible: false
         })
       }
@@ -60,3 +79,43 @@ export default class ExampleApp extends Component {
         });
       }
 }
+```
+
+## Props
+```
+|-------------------------|--------------------------------------------|-------------|-------------|
+|        name             |      description                           |  type       |   default   |
+|-------------------------|--------------------------------------------|-------------|-------------|
+| visible                 | filterbar visible                          | bool        | true        |
+|-------------------------|--------------------------------------------|-------------|-------------|
+|androidUnderlineColor    | underline color                            | string      | transparent |
+|-------------------------|--------------------------------------------|-------------|-------------|
+|placeholderText          | filter bar placeholder                     | string      | search here |
+|-------------------------|--------------------------------------------|-------------|-------------|
+|listContainerStyle       | style the list container                   | any         |             |
+|-------------------------|--------------------------------------------|-------------|-------------|
+|overlayStyle             | style filter bar overlay                   | any         |             |
+|-------------------------|--------------------------------------------|-------------|-------------|
+|cancelButtonSTyle        | style the cancel button                    | any         |             |
+|-------------------------|--------------------------------------------|-------------|-------------|
+|cancelButtonText         | text for cancel button                     | string      | cancel      |
+|-------------------------|--------------------------------------------|-------------|-------------|
+|onSelectItems            | filter bar items selected                  | func        |             |
+|-------------------------|--------------------------------------------|-------------|-------------|
+|onCancel                 | items cancelled                            | func        |             |
+|-------------------------|--------------------------------------------|-------------|-------------|
+|options                  | list of items to select from               | array       |             |
+|-------------------------|--------------------------------------------|-------------|-------------|
+|title                    | filter bar title                           | string      |             |
+|-------------------------|--------------------------------------------|-------------|-------------|
+|modal                    |                                            | object      |             |
+|-------------------------|--------------------------------------------|-------------|-------------|
+
+```
+
+
+#### Copyright and License 
+```
+BSD License
+
+copyright 2017 Michael kojo-zil. All rights reserved

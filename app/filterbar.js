@@ -12,33 +12,21 @@ import { filterStyle } from './styles';
 
 
 FilterBar.propTypes = {
+  overlayStyle: PropTypes.any,
   options: PropTypes.array.isRequired,
-  onSelect: PropTypes.func.isRequired,
+  onSelectItem: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
   placeholderText: PropTypes.string,
   placeholderTextColor: PropTypes.string,
   androidUnderlineColor: PropTypes.string,
-  cancelButtonText: PropTypes.string,
   title: PropTypes.string,
-  noResultsText: PropTypes.string,
   visible: PropTypes.bool,
-  showFilter: PropTypes.bool,
   modal: PropTypes.object,
-  selectedOption: PropTypes.string,
   renderOption: PropTypes.func,
   renderCancelButton: PropTypes.func,
-  renderList: PropTypes.func,
-  listViewProps: PropTypes.object,
-  filterTextInputContainerStyle: PropTypes.any,
-  filterTextInputStyle: PropTypes.any,
-  cancelContainerStyle: PropTypes.any,
   cancelButtonStyle: PropTypes.any,
-  cancelButtonTextStyle: PropTypes.any,
-  titleTextStyle: PropTypes.any,
-  overlayStyle: PropTypes.any,
   listContainerStyle: PropTypes.any,
   optionTextStyle:PropTypes.any,
-  selectedOptionTextStyle:PropTypes.any,
 }
 
 export class FilterBar extends Component {
@@ -105,7 +93,7 @@ export class FilterBar extends Component {
     const filter = (!showFilter) ? null : (
       <View style={filterTextInputContainerStyle || filterStyle.filterTextInputContainer}>
         <TextInput
-          onChangeText={this.onFilterChange}
+          onChangeText={this.onItemsChange}
           autoCorrect={false}
           blurOnSubmit={true}
           autoCapitalize="none"
@@ -181,7 +169,7 @@ export class FilterBar extends Component {
       return (
         <TouchableOpacity activeOpacity={0.7}
           style={style}
-          onPress={() => this.props.onSelect(key)}
+          onPress={() => this.props.onSelectItem(key)}
         >
           <Text style={textStyle}>{label}</Text>
         </TouchableOpacity>
@@ -206,7 +194,7 @@ export class FilterBar extends Component {
     )
   }
 
-  onFilterChange = (text) => {
+  onItemsChange = (text) => {
     const { options } = this.props
 
     const filter = text.toLowerCase();
@@ -222,36 +210,6 @@ export class FilterBar extends Component {
       ds: this.state.ds.cloneWithRows(filtered)
     })
   }
-}
-
-FilterBar.propTypes = {
-  options: PropTypes.array.isRequired,
-  onSelect: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired,
-  placeholderText: PropTypes.string,
-  placeholderTextColor: PropTypes.string,
-  androidUnderlineColor: PropTypes.string,
-  cancelButtonText: PropTypes.string,
-  title: PropTypes.string,
-  noResultsText: PropTypes.string,
-  visible: PropTypes.bool,
-  showFilter: PropTypes.bool,
-  modal: PropTypes.object,
-  selectedOption: PropTypes.string,
-  renderOption: PropTypes.func,
-  renderCancelButton: PropTypes.func,
-  renderList: PropTypes.func,
-  listViewProps: PropTypes.object,
-  filterTextInputContainerStyle: PropTypes.any,
-  filterTextInputStyle: PropTypes.any,
-  cancelContainerStyle: PropTypes.any,
-  cancelButtonStyle: PropTypes.any,
-  cancelButtonTextStyle: PropTypes.any,
-  titleTextStyle: PropTypes.any,
-  overlayStyle: PropTypes.any,
-  listContainerStyle: PropTypes.any,
-  optionTextStyle:PropTypes.any,
-  selectedOptionTextStyle:PropTypes.any,
 }
 
 FilterBar.defaultProps = {
