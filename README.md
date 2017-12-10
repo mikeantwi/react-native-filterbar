@@ -37,12 +37,13 @@ export default class ExampleApp extends Component {
 
 
     render() {
+    	return (
         <View style={{flex: 1, backgroundColor: '#ede', justifyContent: 'space-around}}> 
            
            {this.renderFilterbar(data)}
            
             <TouchableOpacity 
-                onPress={this.onVisble} 
+                onPress={this.onShow} 
                 style={filterBarStyle.touchable}>
                 <Text style={{ textAlign: 'center', color: this.state.visible ? '#333' : '#c9c9c9'}}>{this.state.picked}</Text>
             </TouchableOpacity> 
@@ -53,7 +54,7 @@ export default class ExampleApp extends Component {
         return (
             <Filterbar
                 visible={this.state.visible}
-                onSelectItems={this.onSelectItems}
+                onSelect={this.onSelect}
                 onCancel={this.onCancel}
                 options={courses}
             > 
